@@ -1,0 +1,38 @@
+
+// A simple recursive CPP program to print
+// first n Tribonacci numbers.
+#include <bits/stdc++.h>
+using namespace std;
+
+int printTribRec(int n, vector<int> &dp)
+{
+	if (n == 0 || n == 1 || n == 2)
+		return 0;
+
+	if(dp[n] != -1){
+		return dp[n] ;
+	}
+
+	if (n == 3)
+		return 1;
+	else
+		return dp[n] = printTribRec(n - 1, dp) +
+					printTribRec(n - 2, dp) +
+					printTribRec(n - 3, dp);
+}
+
+void printTrib(int n)
+{
+	// dp vector to store subproblems
+	vector<int> dp(n+1, -1) ;
+	for (int i = 1; i < n; i++)
+		cout << printTribRec(i, dp) << " ";
+}
+
+// Driver code
+int main()
+{
+	int n = 10;
+	printTrib(n);
+	return 0;
+}
